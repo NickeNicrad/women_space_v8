@@ -24,7 +24,7 @@
                 <div class="position-middle">
                     <div class="row margin-0">
                         <div class="col-12 col-md-10 offset-md-1 col-lg-7 margin-0">
-                            <h1 class="fw-light line-height-160 margin-0">Quality is not only our standard. It's also an attitude instilled in our company</h1>
+                            <h1 class="fw-light line-height-160 margin-0">La réduction de la pauvreté en RDC tant prônée de nos jours par les pouvoirs publics passe d’abord par la prise en compte des réalités quotidiennes des populations.</h1>
                         </div>
                     </div><!-- end row -->
                 </div>
@@ -55,30 +55,30 @@
         <div class="container">
             <div class="row icon-5xl g-4">
                 <div class="col-12 col-lg-3">
-                    <div class="border-all padding-30">
-                        <i class="bi bi-chat-text text-primary margin-bottom-10"></i>
-                        <h6 class="fw-medium uppercase">Assemblée Generale</h6>
+                    <div class="border-all padding-20">
+                        <i class="bi bi-bank text-primary margin-bottom-10"></i>
+                        <h6 class="fw-medium uppercase" style="font-size: 13.5px; letter-spacing: 0.7px;">Assemblée Generale</h6>
                         <small>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</small>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3">
-                    <div class="border-all padding-30">
-                        <i class="bi bi-megaphone text-primary margin-bottom-10"></i>
-                        <h6 class="fw-medium uppercase">Commuté Directeur</h6>
+                    <div class="border-all padding-20">
+                        <i class="bi bi-people text-primary margin-bottom-10"></i>
+                        <h6 class="fw-medium uppercase" style="font-size: 13.5px; letter-spacing: 0.7px;">Commuté Directeur</h6>
                         <small>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</small>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3">
-                    <div class="border-all padding-30">
-                        <i class="bi bi-star text-primary margin-bottom-10"></i>
-                        <h6 class="fw-medium uppercase">College des Commissaires</h6>
+                    <div class="border-all padding-20">
+                        <i class="bi bi-briefcase text-primary margin-bottom-10"></i>
+                        <h6 class="fw-medium uppercase" style="font-size: 13.5px; letter-spacing: 0.7px;">College des Commissaires</h6>
                         <small>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</small>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3">
-                    <div class="border-all padding-30">
-                        <i class="bi bi-star text-primary margin-bottom-10"></i>
-                        <h6 class="fw-medium uppercase">College des Fondateurs</h6>
+                    <div class="border-all padding-20">
+                        <i class="bi bi-bricks text-primary margin-bottom-10"></i>
+                        <h6 class="fw-medium uppercase" style="font-size: 13.5px; letter-spacing: 0.7px;">College des Fondateurs</h6>
                         <small>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</small>
                     </div>
                 </div>

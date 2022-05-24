@@ -107,11 +107,11 @@ class AboutController extends Controller
 
         if ($files = $request->file('images')) {
             foreach ($files as $file) {
-                $images = Storage::disk('public')->put('images/about', $file);
+                $images[] = Storage::disk('public')->put('images/about', $file);
             }
         }
 
-        About::findOrFail($id)->update([
+        About::findOrFail($about->id)->update([
             'title' => $request->title,
             'content' => $request->content,
             'category' => $request->category,
