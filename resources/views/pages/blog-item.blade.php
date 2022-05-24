@@ -39,7 +39,7 @@
                                     <a href="#">{{$post->author->name}}</a> - {{ date('M d, Y', strtotime($post->created_at)) }}
                                 </span>
                                 <span class="font-small">
-                                    <button><i class="bi bi-share"></i> Partager</button>
+                                    <a href="#"><i class="bi bi-share"></i> Partager</a>
                                 </span>
                             </div>
                         </div>

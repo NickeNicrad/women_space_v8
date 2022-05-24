@@ -31,7 +31,7 @@
             <div class="col-12 col-lg-7">
                 <div class="row gallery-wrapper g-2">
                     @foreach(explode('|', $about->images) as $image)
-                        <div class="col-6 gallery-box">
+                        <div class="col-12 col-md-6 gallery-box">
                             <div class="gallery-img">
                                 <a href="/images/business-creative-about-2.jpg" data-gallery-title="{{ $about->title }}">
                                     <img src="{{ Storage::url($image) }}" style="height: 400px; width: 100%; object-fit: cover;" alt="">

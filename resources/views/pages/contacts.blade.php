@@ -28,7 +28,7 @@
         <div class="row g-4">
             <div class="col-12 col-md-6">
                 <div class="contact-form text-sm-end">
-                    <form action="route('contacts.store')" method="POST" id="contactform" style="font-size: 11px;">
+                    <form action="mailto:nickenicrad@gmail.com" method="POST" id="contactform" style="font-size: 11px;">
                         <div class="row gx-3 gy-0">
                             <div class="col-12 col-sm-6">
                                 <input style="border-radius: 0.2rem; font-size: 12px;" type="text" id="name" name="name" placeholder="Votre Nom" required>
@@ -43,8 +43,8 @@
                     </form>
                     <!-- Submit result -->
                     <div class="submit-result">
-                        <span id="success">Thank you! Your Message has been sent.</span>
-                        <span id="error">Something went wrong, Please try again!</span>
+                        <span id="success"><small>Thank you! Your Message has been sent.</small></span>
+                        <span id="error"><small>Something went wrong, Please try again!</small></span>
                     </div>
                 </div>
             </div>
