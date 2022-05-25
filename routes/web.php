@@ -36,7 +36,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::resource('/contact', AddressController::class)->name('*', 'contact');
 
-    Route::resource('/users', RegisteredUserController::class)->name('*', 'users');
+    Route::resource('/users', RegisteredUserController::class)->middleware('guest')->name('*', 'users');
 
     Route::resource('/about', AboutController::class)->name('*', 'about');
 
