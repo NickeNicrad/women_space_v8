@@ -3,7 +3,7 @@
 @php
 
     $posts = DB::table('posts')->latest()->paginate(9);
-    $categories = DB::table('categories')->latest()->get();
+    $categories = DB::table('categories')->orderBy('title', 'asc')->get();
 
 @endphp
 
@@ -36,7 +36,7 @@
 
             @foreach($posts as $post)
                 @foreach(explode('|', $post->images) as $image)
-                    <div class="col-12 col-md-4 gallery-box portfolio-item category-{{ $post->id }}">
+                    <div class="col-12 col-md-4 gallery-box portfolio-item category-{{ $post->category_id }}">
                         <div class="gallery-img">
                             <a href="{{ Storage::url($image) }}" data-gallery-title="{{ $post->title }}">
                                 <img style="height: 230px; object-fit: cover;" src="{{ Storage::url($image) }}" alt="">
