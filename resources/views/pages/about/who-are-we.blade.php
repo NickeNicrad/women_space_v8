@@ -8,7 +8,7 @@
 
 @section('ws_meta')
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="Aprops de Women Space | {{ $about->title }}">
+    <meta property="og:title" content="Aprops de Women Space | {{ ucwords($about->title) }}">
     <meta property="og:image" content="{{ asset('/log/baseLogo.png') }}">
     <meta property="og:description" content="{{ $about->content }}">
     <meta property="og:image:width" content="1200">
@@ -47,7 +47,7 @@
             </div>
             <div class="col-12 col-lg-5 icon-5xl">
                 <div class="row g-4">
-                    <h3 class="fw-light text-primary">{{ $about->title }}</h3>
+                    <h3 class="fw-light text-primary">{{ ucwords($about->title) }}</h3>
                     {!! $about->content !!}
                 </div>
             </div>

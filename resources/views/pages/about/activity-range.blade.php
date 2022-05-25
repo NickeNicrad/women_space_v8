@@ -25,7 +25,7 @@
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-12 col-lg-5">
-                <h3 class="fw-light text-primary">{{ $about->title }}</h3>
+                <h3 class="fw-light text-primary">{{ ucwords($about->title) }}</h3>
                 <div>{!! $about->content !!}</div>
                 <a class="button button-lg button-rounded button-reveal-right-dark margin-top-30" href="/contacts"><span>Entrer en Contact</span><i class="bi bi-arrow-right"></i></a>
             </div>
@@ -34,7 +34,7 @@
                     @foreach(explode('|', $about->images) as $image)
                         <div class="col-6 gallery-box">
                             <div class="gallery-img">
-                                <a href="/images/business-creative-about-2.jpg" data-gallery-title="{{ $about->title }}">
+                                <a href="{{ Storage::url($image) }}" data-gallery-title="{{ ucwords($about->title) }}">
                                     <img src="{{ Storage::url($image) }}" style="height: 400px; width: 100%; object-fit: cover;" alt="">
                                 </a>
                             </div>
