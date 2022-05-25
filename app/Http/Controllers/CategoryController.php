@@ -47,7 +47,7 @@ class CategoryController extends Controller
             'content' => $request->content,
         ]);
 
-        return redirect('category')->with('success', 'successfully created!');
+        return back()->with('success', 'successfully created!');
     }
 
     /**
