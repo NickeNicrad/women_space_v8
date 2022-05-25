@@ -92,7 +92,7 @@ class CategoryController extends Controller
             'content' => $request->content,
         ]);
 
-        return redirect('category')->with('success', 'successfully updated!');
+        return back()->with('success', 'successfully updated!');
     }
 
     /**
@@ -105,6 +105,6 @@ class CategoryController extends Controller
     {
         Category::findOrFail($id)->delete();
 
-        return redirect('category')->with('success', 'successfully deleted!');
+        return back()->with('success', 'successfully deleted!');
     }
 }
