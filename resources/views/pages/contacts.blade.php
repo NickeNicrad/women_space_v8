@@ -90,10 +90,8 @@
                     </div>
                 </div>
             </div>
-        </div><!-- end row -->
-    </div><!-- end container -->
+        </div>
+    </div>
 </div>
-<!-- end Contact section -->
-
 @endempty
 @endsection

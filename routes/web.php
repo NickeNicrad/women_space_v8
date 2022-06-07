@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LinkController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,8 +41,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::resource('/about', AboutController::class)->name('*', 'about');
 
-    Route::resource('/link', LinkController::class)->name('*', 'link');
+    Route::resource('/partners', PartnerController::class)->name('*', 'partners');
 
+    Route::resource('/links', LinkController::class)->name('*', 'links');
 });
 
 // visitor's routes

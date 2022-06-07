@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Link;
+use App\Models\Partner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class LinkController extends Controller
+class PartnerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,13 +37,15 @@ class LinkController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|unique:links',
-            'link' => 'required|max:5000|unique:links',
+            'name' => 'required|unique:partners',
+            'link' => 'required|unique:partners',
+            'logo' => 'required',
         ]);
 
-        Link::create([
-            'title' => strtolower($request->title),
+        Partner::create([
+            'name' => strtolower($request->name),
             'link' => strtolower($request->link),
+            'logo' => $request->hasFile('logo') ? Storage::disk('public')->put('images/partners', $request->file('logo')) : 'N/A',
         ]);
 
         return back()->with('success', 'successfully created!');
@@ -51,10 +54,10 @@ class LinkController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Link  $link
+     * @param  \App\Models\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function show(Link $link)
+    public function show(Partner $partner)
     {
         //
     }
@@ -62,10 +65,10 @@ class LinkController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Link  $link
+     * @param  \App\Models\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Link $link)
+    public function edit(Partner $partner)
     {
         //
     }
@@ -74,32 +77,23 @@ class LinkController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Link  $link
+     * @param  \App\Models\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Link $link)
+    public function update(Request $request, Partner $partner)
     {
-        $request->validate([
-            'link' => 'max:5000',
-        ]);
-
-        Link::findOrFail($link->id)->update([
-            'title' => strtolower($request->title),
-            'link' => strtolower($request->link),
-        ]);
-
-        return back()->with('success', 'successfully updated!');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Link  $link
+     * @param  \App\Models\Partner  $partner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Link $link)
+    public function destroy(Partner $partner)
     {
-        Link::findOrFail($link->id)->delete();
+        Partner::findOrFail($partner->id)->delete();
 
         return back()->with('success', 'successfully deleted!');
     }

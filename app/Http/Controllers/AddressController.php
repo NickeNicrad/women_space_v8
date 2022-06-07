@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use App\Models\Link;
+use App\Models\Partner;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
@@ -26,10 +27,12 @@ class AddressController extends Controller
     public function create()
     {
         $address = Address::latest()->first();
+        $partners = Partner::latest()->get();
         $links = Link::latest()->get();
 
         return view('admin.contact_form', [
             'address' => $address,
+            'partners' => $partners,
             'links' => $links,
             'title' => 'Parametres',
             'desc' => 'This is meta Description for the settings',

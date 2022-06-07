@@ -18,8 +18,15 @@
                     <h6 class="font-small fw-normal uppercase">Contacts</h6>
                     <ul class="list-unstyled">
                         <li class="d-flex"><i class="bi bi-geo-alt margin-right-10"></i> {{ $address->address }}</li>
-                        <li><i class="bi bi-envelope margin-right-10"></i> {{ $address->email }}</li>
-                        <li><i class="bi bi-telephone margin-right-10"></i> {{ $address->phone }}</li>
+                        <li>
+                            <i class="bi bi-envelope margin-right-10"></i> <a href="mailto:{{ $address->email }}">{{ $address->email }}</a>
+                        </li>
+                        <li>
+                            @foreach(explode('|', $address->phone) as $phone)
+                                <i class="bi bi-telephone margin-right-10"></i>
+                                <a href="tel:{{ $phone }}">{{ $phone }}</a><br>
+                            @endforeach
+                        </li>
                     </ul>
                 </div>
                 <div class="col-6 col-sm-12 col-lg-3">

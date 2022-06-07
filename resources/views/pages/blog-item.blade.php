@@ -6,21 +6,19 @@
 @section('ws_meta')
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="{{ ucwords($post->title) }}">
-    <meta property="og:author" content="{{ $post->author->name ?: 'Nix, inc' }}" />
-    <meta property="og:image" content="{{ Storage::url(explode('|', $post->images)[0]) }}">
-    <meta property="og:description" content="{{ $post->content }}">
+    <meta property="og:author" content="{{ $post->author->name ?: 'Nix, inc' }}">
+    <meta property="og:image" content="{{ asset(Storage::url(explode('|', $post->images)[0])) }}">
+    <meta property="og:description" content="{{ ucfirst($post->content) }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="article">
 @endsection
 
 @section('content')
-
 <div class="section">
     <div class="container">
         <div class="row g-5">
             <div class="col-12 col-lg-8">
-                <!-- Blog Post box 1 -->
                 <div class="margin-bottom-0">
                     <div class="owl-carousel owl-nav-overlay" data-owl-items="1" data-owl-nav="true" data-owl-dots="false">
                         @foreach(explode('|', $post->images) as $image)
@@ -28,34 +26,34 @@
                         @endforeach
                     </div>
                     <div class="margin-top-30">
-                        <div class="d-flex justify-content-between margin-bottom-10">
-                            <div class="d-inline-flex">
-                                <a class="font-family-tertiary font-small fw-normal uppercase" href="#">
-                                    {{ucfirst($post->category->title)}}
-                                </a>
+                        <div class="d-inline-flex">
+                            <a class="font-family-tertiary font-small fw-bold uppercase" href="#">
+                                {{ucfirst($post->category->title)}}
+                            </a>
+                        </div>
+                        <div class="d-flex gap-3 justify-content-between margin-bottom-10">
+                            <div class="font-small">
+                                <span>{{ date('M d, Y', strtotime($post->created_at)) }}</span>
+                                <span>  <a href="#">{{$post->author->name}}</a></span>
                             </div>
-                            <div class="d-inline-flex gap-3">
-                                <span class="font-small">
-                                    <a href="#">{{$post->author->name}}</a> - {{ date('M d, Y', strtotime($post->created_at)) }}
-                                </span>
-                                <span class="font-small">
-                                    <a href="#"><i class="bi bi-share"></i> Partager</a>
-                                </span>
-                            </div>
+                            <span class="font-large d-flex gap-3">
+                                <small class="font-small d-block d-lg-none">Partager</small>
+                                <a target="_blank" href="http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo urlencode(ucwords($post->title)); ?>&amp;p[summary]=<?php echo urlencode(ucfirst($post->content)) ?>&amp;p[url]=<?php echo urlencode(url()->current()); ?>&amp;p[images][0]=<?php echo urlencode(asset(Storage::url(explode('|', $post->images)[0]))); ?>"><i class="bi bi-facebook"></i></a>
+                                <a target="_blank" href="https://twitter.com/intent/tweet?text=<?php echo ucwords($post->title) ?>&amp;url={{ url()->current() }}"><i class="bi bi-twitter"></i></a>
+                                <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ url()->current() }}&amp;title={{ ucwords($post->title) }}&amp;summary={{ ucfirst($post->content) }}"><i class="bi bi-linkedin"></i></a>
+                                <a target="_blank" href="https://wa.me/?text={{ url()->current() }}"><i class="bi bi-whatsapp"></i></a>
+                            </span>
                         </div>
                         <h5><a href="#" onclick="return func(0)">{{ ucwords($post->title) }}</a></h5>
-                        <p>{!! ucfirst($post->content) !!}</p>
+                        <div>{!! ucfirst($post->content) !!}</div>
                         <div class="margin-top-0">
                             <a class="button-text-1" href="#">Lire Plus</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- end Blog Posts -->
 
-            <!-- Blog Sidebar -->
             <div class="col-12 col-lg-4 sidebar-wrapper">
-                <!-- Sidebar box 3 - Popular Posts -->
                 <div class="sidebar-box" style="padding: 15px;">
                     <h6 class="font-small fw-normal uppercase">Autres Articles</h6>
 
@@ -83,7 +81,6 @@
                     </ul>
                 </div>
 
-                <!-- Sidebar box 6 - Facebook Like box -->
                 <div class="sidebar-box text-center">
                     <h6 class="font-small fw-normal uppercase">Suivez-nous Sur</h6>
                     <ul class="list-inline">
@@ -95,9 +92,7 @@
                     </ul>
                 </div>
             </div>
-            <!-- end Blog Sidebar -->
-        </div><!-- end row -->
-    </div><!-- end container -->
+        </div>
+    </div>
 </div>
-
 @endsection

@@ -43,20 +43,22 @@
 
                         <div class="flex justify-between items-center bg-gray-50 px-4 py-3 sm:px-6 sm:flex mb-4">
                             <h4 class="text-gray-700">Partenaires</h4>
-                            <button class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-2 py-1 bg-gray-400 text-base font-thin text-white hover:bg-gray-500 focus:outline-none focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
+                            <button id="show-modal" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-2 py-1 bg-gray-400 text-base font-thin text-white hover:bg-gray-500 focus:outline-none focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                 </svg>
                             </button>
                         </div>
 
                         <div class="overflow-x-scroll flex">
-                            <div class="flex-none px-3 first:pl-6 last:pr-6">
-                                <div class="flex flex-col items-center justify-center gap-2">
-                                    <img class="w-16 h-16 border rounded-full object-cover" src="/log/baseLogo.png"/>
-                                    <strong class="text-slate-900 text-xs font-medium dark:text-slate-400">Name</strong>
+                            @foreach($partners as $partner)
+                                <div class="flex-none px-3 first:pl-6 last:pr-6">
+                                    <div class="flex flex-col items-center justify-center gap-2">
+                                        <img class="w-16 h-16 border rounded-full object-cover" src="{{ Storage::url($partner->logo) }}"/>
+                                        <strong class="text-slate-900 text-xs font-medium dark:text-slate-400">{{ $partner->name }}</strong>
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
 
                     </div>
@@ -69,7 +71,7 @@
                             <h4 class="text-gray-700">Liens HyperText</h4>
                         </div>
 
-                        <form action="{{ route('link.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('links.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('post')
 
@@ -124,7 +126,7 @@
 
                             <div class="mb-4 w-full space-y-2">
                                 <label class="block text-sm font-medium text-gray-700">Adresse Physique</label>
-                                <input class="focus:ring-gray-500 focus:border-gray-500 flex-1 block w-full rounded sm:text-sm border-gray-300" type="text" value="{{ $address->address ?: '' }}" placeholder="Adresse Physique..." name="address" />
+                                <textarea class="focus:ring-gray-500 focus:border-gray-500 flex-1 block w-full rounded sm:text-sm border-gray-300" name="address" placeholder="Adresse Physique..." cols="30" rows="5">{{ $address->address ?: '' }}</textarea>
                             </div>
 
                             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
@@ -143,7 +145,7 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-4 bg-white border-b border-gray-200">
 
-                        <img src="/log/baseLogo.png" style="height: 180px; width: 100%; object-fit: cover;" alt="">
+                        <img src="/log/baseLogo.png" style="height: 160px; width: 100%; object-fit: cover;" alt="">
 
                         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex mb-4">
                             <h4 class="text-gray-700">Détailles</h4>
@@ -154,7 +156,11 @@
 
                             <ul class="p-4 pt-1">
                                 <li><small>Localisation: <b>{{ucfirst($address->location ?: '')}}</b></small></li>
-                                <li><small>Téléphone: <b>{{$address->phone ?: ''}}</b></small></li>
+                                <li><small>Téléphone:
+                                    @foreach(explode('|', $address->phone) as $phone)
+                                        <b>{{$phone ?: ''}}</b>
+                                    @endforeach
+                                </small></li>
                                 <li><small>Adresse Electronique: <b>{{$address->email ?: ''}}</b></small></li>
                                 <li><small>Adresse Physique: <b>{{ucwords($address->address ?: '')}}</b></small></li>
                             </ul>
@@ -165,7 +171,18 @@
 
                             <ul class="p-4 pt-1">
                                 @foreach($links as $link)
-                                    <li><small>{{ucfirst($link->title)}}: <b>{{$link->link}}</b></small></li>
+                                    <li class="flex justify-between">
+                                        <a href="{{$link->link}}" target="_blank">
+                                            <small>{{ucfirst($link->title)}}: <b>{{$link->link}}</b></small>
+                                        </a>
+                                        <form action="{{route('links.destroy', $link->id)}}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" onclick="return confirm('etes-vous sure de vouloir supprimer ce lien?')" class="text-red-500 hover:text-red-400 font-bold rounded-r">
+                                                &times;
+                                            </button>
+                                        </form>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>
@@ -175,5 +192,7 @@
             </div>
         </div>
     </div>
+
+    @include('admin.partner_form')
 
 </x-app-layout>

@@ -33,7 +33,7 @@
         </div>
 
         <script>
-            let modal = document.getElementById('category-modal');
+            let modal = document.getElementById('modal');
             let btn_open = document.getElementById('show-modal');
             let btn_close = document.getElementById('close-modal');
 

@@ -25,7 +25,7 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('contact.create')" :active="request()->routeIs('contact.create')">
-                        {{ __('Contacts') }}
+                        {{ __('Parametres') }}
                     </x-nav-link>
                 </div>
 
@@ -38,12 +38,6 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('about.create')" :active="request()->routeIs('about.create')">
                         {{ __('Apropos') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
-                        {{ __('Parametres') }}
                     </x-nav-link>
                 </div>
             </div>

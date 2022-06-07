@@ -18,11 +18,9 @@
 @endsection
 
 @section('content')
-<!-- Gallery section -->
 <div id="gallery" class="section bg-dark-lighter">
     <div class="container">
 
-        <!-- Portfolio Filter -->
         <div class="filter filter-style-3 text-center">
             <ul>
                 <li data-filter="all">All</li>
@@ -30,7 +28,7 @@
                     <li data-filter=".category-{{$category->id}}">{{$category->title}}</li>
                 @endforeach
             </ul>
-        </div><!-- end Portfolio Filter -->
+        </div>
 
         <div class="row gallery-wrapper portfolio-wrapper hover-style-2 g-2">
 
@@ -53,8 +51,6 @@
                 {!! $posts->render("pagination::bootstrap-4") !!}
             </ul>
         </nav>
-    </div><!-- end container -->
+    </div>
 </div>
-<!-- end Gallery section -->
-
 @endsection
