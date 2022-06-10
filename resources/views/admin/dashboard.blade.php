@@ -4,6 +4,8 @@
     $posts = DB::table('posts')->latest()->get();
     $categories = DB::table('categories')->get();
 
+    $isAdmin = auth()->check() && Auth::user()->role === 'admin' ? true : false;
+
 @endphp
 
 <x-app-layout>
