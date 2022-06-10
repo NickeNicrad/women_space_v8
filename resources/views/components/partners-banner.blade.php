@@ -13,7 +13,7 @@
                         </a>
                     </div>
                 @endforeach
-            </div><!-- end owl-carousel -->
-        </div><!-- end container -->
+            </div>
+        </div>
     </div>
 @endif

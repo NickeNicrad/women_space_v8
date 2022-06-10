@@ -11,35 +11,38 @@
                 </div>
 
                 <!-- Navigation Links -->
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                @if(auth()->check() && Auth::user()->role === 'user')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
+                            {{ __('Articles') }}
+                        </x-nav-link>
+                    </div>
+                @endif
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
-                        {{ __('Articles') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('contact.create')" :active="request()->routeIs('contact.create')">
-                        {{ __('Parametres') }}
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('users.create')" :active="request()->routeIs('users.create')">
-                        {{ __('Utilisateurs') }}
-                    </x-nav-link>
-                </div>
-
+                @if(auth()->check() && Auth::user()->role === 'admin')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('contact.create')" :active="request()->routeIs('contact.create')">
+                            {{ __('Parametres') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('users.create')" :active="request()->routeIs('users.create')">
+                            {{ __('Utilisateurs') }}
+                        </x-nav-link>
+                    </div>
+                @endif
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('about.create')" :active="request()->routeIs('about.create')">
                         {{ __('Apropos') }}
                     </x-nav-link>
                 </div>
+
             </div>
 
             <!-- Settings Dropdown -->

@@ -4,6 +4,8 @@
     $posts = DB::table('posts')->latest()->get();
     $categories = DB::table('categories')->get();
 
+    $isAdmin = auth()->check() && Auth::user()->role === 'admin' ? true : false;
+
 @endphp
 
 <x-app-layout>
@@ -60,8 +62,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="space-x-4">
-                        <div class="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-4 lg:gap-x-6">
-
+                        <div class="space-y-12 lg:space-y-0 lg:grid {{ $isAdmin === true ? 'lg:grid-cols-4' : 'lg:grid-cols-3' }} lg:gap-x-6">
+                            @if($isAdmin === true)
                             <div class="bg-gray-100 p-3 rounded">
                                 <div class="w-full grid grid-cols-5 gap-y-8 gap-x-6">
                                     <div class="col-span-2 bg-gray-200 rounded-full h-20 w-20 border-dashed border-gray-400 border-2 flex justify-items-center">
@@ -77,6 +79,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
 
                             <div class="bg-gray-100 p-3 rounded">
                                 <div class="w-full grid grid-cols-5 gap-y-8 gap-x-6">
@@ -145,6 +148,7 @@
                                         <p class="text-gray-400 text-sm">{{ $category->title }}</p>
                                         <p class="text-gray-300 text-xs">{{ $category->content }}</p>
                                     </div>
+                                    @if($isAdmin === true)
                                     <div class="col-span-2 flex justify-around items-center">
                                         <button class="p-2 rounded-full border-2 bg-gray-400 text-white hover:bg-gray-500">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
@@ -162,6 +166,7 @@
                                             </button>
                                         </form>
                                     </div>
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
@@ -179,7 +184,7 @@
                                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                             Image
                                                         </th>
-                                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/3">
+                                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/2">
                                                             Titre
                                                         </th>
                                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -194,7 +199,7 @@
                                                                 <img class="h-10 w-16 object-cover rounded" src="{{ Storage::url(explode('|', $post->images)[0]) }}" alt="">
                                                             </td>
                                                             <td class="px-4 py-3 whitespace-nowrap">
-                                                                <div class="text-sm text-gray-700 capitalize overflow-ellipsis">
+                                                                <div class="text-sm text-gray-700 capitalize overflow-ellipsis" style="width: 620px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; line-clamp: 1; -webkit-box-orient: vertical;">
                                                                     {{$post->title}}
                                                                 </div>
                                                                 <div class="text-sm text-gray-500">
@@ -207,6 +212,7 @@
                                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                                     </svg>
                                                                 </a>
+                                                                @if($isAdmin === true)
                                                                 <form action="{{route('posts.destroy', $post->id)}}" method="POST">
                                                                     @csrf
                                                                     @method('delete')
@@ -216,6 +222,7 @@
                                                                         </svg>
                                                                     </button>
                                                                 </form>
+                                                                @endif
                                                             </td>
                                                         </tr>
                                                     @endforeach

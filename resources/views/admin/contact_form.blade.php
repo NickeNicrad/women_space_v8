@@ -52,10 +52,19 @@
 
                         <div class="overflow-x-scroll flex">
                             @foreach($partners as $partner)
-                                <div class="flex-none px-3 first:pl-6 last:pr-6">
-                                    <div class="flex flex-col items-center justify-center gap-2">
+                                <div class="flex-none px-3 first:pl-6 last:pr-6 group">
+                                    <div class="flex flex-col items-center justify-center gap-2 relative">
                                         <img class="w-16 h-16 border rounded-full object-cover" src="{{ Storage::url($partner->logo) }}"/>
                                         <strong class="text-slate-900 text-xs font-medium dark:text-slate-400">{{ $partner->name }}</strong>
+                                        <form action="{{route('partners.destroy', $partner->id)}}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" onclick="return confirm('etes-vous sure de vouloir supprimer cet article?')" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden group-hover:block text-red-300">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             @endforeach

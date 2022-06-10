@@ -45,7 +45,7 @@
                         <a href="{{ url('actualité/' . $post->slug) }}"></a>
                         <div class="portfolio-title">
                             <div>
-                                <span class="font-small">{{ $post->category->title }}</span>
+                                <span class="font-small">{{ ucfirst($post->category->title) }}</span>
                                 <h5 class="fw-normal" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;">{{ ucwords($post->title) }}</h5>
                             </div>
                             <i class="bi bi-arrow-right"></i>

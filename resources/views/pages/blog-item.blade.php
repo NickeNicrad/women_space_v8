@@ -86,7 +86,9 @@
                     <ul class="list-inline">
                         @foreach($links as $link)
                             <li>
-                                <a href="{{strtolower($link->link)}}" target="_blank"><i class="bi bi-{{strtolower($link->title)}}"></i></a>
+                                <a href="{{strtolower($link->link)}}" target="_blank">
+                                    <i class="bi bi-{{strtolower($link->title)}}"></i>
+                                </a>
                             </li>
                         @endforeach
                     </ul>

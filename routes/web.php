@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LinkController;
@@ -37,7 +38,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::resource('/contact', AddressController::class)->name('*', 'contact');
 
-    Route::resource('/users', RegisteredUserController::class)->name('*', 'users');
+    Route::resource('/users', UserController::class)->name('*', 'users');
+
+    Route::post('/new-user', [RegisteredUserController::class, 'store'])->name('new-user');
 
     Route::resource('/about', AboutController::class)->name('*', 'about');
 
