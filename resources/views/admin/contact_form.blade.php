@@ -154,7 +154,7 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-4 bg-white border-b border-gray-200">
 
-                        <img src="/log/baseLogo.png" style="height: 160px; width: 100%; object-fit: cover;" alt="">
+                        <img src="/log/baseLogo.png" style="height: 140px; width: 100%; object-fit: cover;" alt="">
 
                         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex mb-4">
                             <h4 class="text-gray-700">Détailles</h4>
@@ -180,18 +180,18 @@
 
                             <ul class="p-4 pt-1">
                                 @foreach($links as $link)
-                                    <li class="flex justify-between">
-                                        <a href="{{$link->link}}" target="_blank">
-                                            <small>{{ucfirst($link->title)}}: <b>{{$link->link}}</b></small>
-                                        </a>
-                                        <form action="{{route('links.destroy', $link->id)}}" method="POST">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" onclick="return confirm('etes-vous sure de vouloir supprimer ce lien?')" class="text-red-500 hover:text-red-400 font-bold rounded-r">
-                                                &times;
-                                            </button>
-                                        </form>
-                                    </li>
+                                <li class="grid grid-cols-10">
+                                    <a class="col-span-9" href="{{$link->link}}" target="_blank" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; line-clamp: 1; -webkit-box-orient: vertical;">
+                                        <small>{{ucfirst($link->title)}} <b>{{$link->link}}</b></small>
+                                    </a>
+                                    <form class="col-span-1" action="{{route('links.destroy', $link->id)}}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" onclick="return confirm('etes-vous sure de vouloir supprimer ce lien?')" class="text-red-500 hover:text-red-400 font-bold rounded-r">
+                                            &times;
+                                        </button>
+                                    </form>
+                                </li>
                                 @endforeach
                             </ul>
                         </div>
