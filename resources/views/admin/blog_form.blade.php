@@ -60,7 +60,11 @@
                                                 <small>Par:</small>
                                                 <small class="font-semibold text-gray-600 overflow-ellipsis">
                                                     <a href="">
-                                                        {{$post->author->name}}
+                                                        @if(is_null($post->author))
+                                                            Unknown
+                                                        @else
+                                                            {{$post->author->name}}
+                                                        @endif
                                                     </a>
                                                 </small>
                                             </div>

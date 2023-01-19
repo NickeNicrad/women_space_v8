@@ -37,7 +37,18 @@
 
             @foreach($posts as $post)
 
-                <div class="col-12 col-md-6 col-xl-4 portfolio-item {{$post->category->title}}">
+            @php
+                $categoryTitle = 'Unknown';
+
+                if(is_null($post->category)) {
+                    $categoryTitle = 'Unknown';
+                }
+                else {
+                    $categoryTitle = $post->category->title;
+                }
+            @endphp
+
+                <div class="col-12 col-md-6 col-xl-4 portfolio-item {{$categoryTitle}}">
                     <div class="portfolio-box">
                         <div style="border-radius: 10px;" class="portfolio-img">
                             <img style="border-radius: 10px; height: 230px; object-fit: cover;" src="{{ Storage::url(explode('|', $post->images)[0]) }}" alt="">
@@ -45,7 +56,7 @@
                         <a href="{{ url('actualité/' . $post->slug) }}"></a>
                         <div class="portfolio-title">
                             <div>
-                                <span class="font-small">{{ ucfirst($post->category->title) }}</span>
+                                <span class="font-small">{{ ucfirst($categoryTitle) }}</span>
                                 <h5 class="fw-normal" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;">{{ ucwords($post->title) }}</h5>
                             </div>
                             <i class="bi bi-arrow-right"></i>

@@ -59,7 +59,7 @@
                                     <div class="w-4/5 h-10 py-3 px-1">
                                         <a href="#" class="hover:text-blue-dark">{{ ucwords($user->name) }}</a>
                                         <br>
-                                        <small>{{ ucwords($user->email) }}</small>
+                                        <small>{{ $user->email }}</small>
                                     </div>
                                     <div class="w-1/5 h-10 text-right p-3">
                                         <p class="text-sm text-grey-dark">{{ ucwords($user->role) }}</p>
